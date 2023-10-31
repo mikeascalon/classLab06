@@ -42,20 +42,20 @@ img {
     border-bottom: 2px solid #000;
 }
 
-ul {
+.mainPage ul {
     list-style: none; /* Bullet style (e.g., disc, circle, square) */
     margin: 20px; /* Remove default margin */
     padding: 0; /* Remove default padding */
 }
 
-li {
+.mainPage li {
     margin: 30px; /* Remove default margin */
     padding: 5px 0; /* Add vertical spacing between list items */
     font-size: 30px;
 }
 
 /* Styling links within list items */
-li a {
+.mainPage li a {
     text-decoration: none; /* Remove underlines from links */
     color: #333; /* Text color for links */
 }
