@@ -1,0 +1,61 @@
+
+header{
+    background-color: black;
+    font-size: 50px;
+    margin: 20px;
+    padding: 5px;
+    color: aliceblue;
+    text-align: center;
+}
+nav{
+    background-color: rgb(239, 123, 123);
+}
+
+nav ul {
+    list-style: none; /* Remove list bullets */
+    padding: 5px; /* Remove default padding */
+    margin: 10px; /* Remove default margin */
+    font-size: 20px;
+}
+
+nav li {
+    display: inline; /* Display list items horizontally */
+    margin-right: 15px; /* Add spacing between list items */
+}
+
+nav a {
+    text-decoration: none; /* Remove underlines from links */
+    color: #fff; /* Text color for links */
+}
+
+/* Style for hover or active links */
+nav a:hover,
+nav a:active {
+    text-decoration: underline; /* Add underline on hover/active */
+}
+
+img {
+    display: block; /* Makes the image a block element, so it's below the navigation */
+    margin: 0 auto; /* Centers the image horizontally */
+    max-width: 100%; /* Keeps the image within its container */
+    border-top: 2px solid #000; 
+    border-bottom: 2px solid #000;
+}
+
+ul {
+    list-style: none; /* Bullet style (e.g., disc, circle, square) */
+    margin: 20px; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+li {
+    margin: 30px; /* Remove default margin */
+    padding: 5px 0; /* Add vertical spacing between list items */
+    font-size: 30px;
+}
+
+/* Styling links within list items */
+li a {
+    text-decoration: none; /* Remove underlines from links */
+    color: #333; /* Text color for links */
+}
