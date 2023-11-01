@@ -1,18 +1,5 @@
 const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
-
-// const seattle = {
-//   location: 'Seattle',
-//   minCustomers: 23,
-//   maxCustomers: 65,
-//   avgCookiesPerSale: 6.3,
-//   sales: [],
-//   estimate: function () {
-//     this.sales = estimateSales(this);
-//   },
-// };
-
-
 function CookieStand(location, minCustomers, maxCustomers, avgCookiesPerSale) {
   this.location = location;
   this.minCustomers = minCustomers;
@@ -28,76 +15,21 @@ function CookieStand(location, minCustomers, maxCustomers, avgCookiesPerSale) {
       const hourSales = Math.ceil(numCustomers * this.avgCookiesPerSale);
       sales.push(hourSales);
     }
+    console.log(sales);
     return sales;
   };
 
 }
 
-
-
-
-// const tokyo = {
-//   location: 'Tokyo',
-//   minCustomers: 3,
-//   maxCustomers: 24,
-//   avgCookiesPerSale: 1.2,
-//   sales: [],
-//   estimate: function () {
-//     this.sales = estimateSales(this);
-//   },
+// LoctionSales.prototype.estimateSales = function () {
+//   const sales = [];
+//   for (let i = 0; i < hours.length; i++) {
+//     const numCustomers = randomInRange(this.minCustomers, this.maxCustomers);
+//     const hourSales = Math.ceil(numCustomers * this.avgCookiesPerSale);
+//     sales.push(hourSales);
+//   }
+//   return sales;
 // };
-
-// const dubai = {
-//   location: 'Dubai',
-//   minCustomers: 11,
-//   maxCustomers: 38,
-//   avgCookiesPerSale: 3.7,
-//   sales: [],
-//   estimate: function () {
-//     this.sales = estimateSales(this);
-//   },
-// };
-
-// const paris = {
-//   location: 'Paris',
-//   minCustomers: 20,
-//   maxCustomers: 38,
-//   avgCookiesPerSale: 2.3,
-//   sales: [],
-//   estimate: function () {
-//     this.sales = estimateSales(this);
-//   },
-// };
-
-// const lima = {
-//   location: 'Lima',
-//   minCustomers: 2,
-//   maxCustomers: 16,
-//   avgCookiesPerSale: 4.6,
-//   sales: [],
-//   estimate: function () {
-//     this.sales = estimateSales(this);
-//   },
-// };
-
-
-// // initialize sales
-// seattle.estimate();
-// tokyo.estimate();
-// dubai.estimate();
-// paris.estimate();
-// lima.estimate();
-
-this.estimateSales = function () {
-  // function estimateSales(store) {
-  const sales = [];
-  for (let i = 0; i < hours.length; i++) {
-    const numCustomers = randomInRange(this.minCustomers, this.maxCustomers);
-    const hourSales = Math.ceil(numCustomers * this.avgCookiesPerSale);
-    sales.push(hourSales);
-  }
-  return sales;
-};
 
 
 
@@ -108,6 +40,8 @@ function randomInRange(min, max) {
 const container = document.getElementById('root');
 const cookieStandArticle = document.createElement('article');
 container.appendChild(cookieStandArticle);
+
+
 
 function renderHeader() {
   //table
@@ -177,10 +111,6 @@ CookieStand.prototype.render = function () {
 // }
 
 
-
-
-
-
 const seattle = new CookieStand('Seattle', 23, 65, 6.3);
 const tokyo = new CookieStand('Tokyo', 3, 24, 1.2);
 const dubai = new CookieStand('Dubai', 11, 38, 3.7);
@@ -194,3 +124,67 @@ const stores = [seattle, tokyo, dubai, paris, lima];
 // render(dubai);
 // render(paris);
 // render(lima);
+
+// const seattle = {
+//   location: 'Seattle',
+//   minCustomers: 23,
+//   maxCustomers: 65,
+//   avgCookiesPerSale: 6.3,
+//   sales: [],
+//   estimate: function () {
+//     this.sales = estimateSales(this);
+//   },
+// };
+
+
+// const tokyo = {
+//   location: 'Tokyo',
+//   minCustomers: 3,
+//   maxCustomers: 24,
+//   avgCookiesPerSale: 1.2,
+//   sales: [],
+//   estimate: function () {
+//     this.sales = estimateSales(this);
+//   },
+// };
+
+// const dubai = {
+//   location: 'Dubai',
+//   minCustomers: 11,
+//   maxCustomers: 38,
+//   avgCookiesPerSale: 3.7,
+//   sales: [],
+//   estimate: function () {
+//     this.sales = estimateSales(this);
+//   },
+// };
+
+// const paris = {
+//   location: 'Paris',
+//   minCustomers: 20,
+//   maxCustomers: 38,
+//   avgCookiesPerSale: 2.3,
+//   sales: [],
+//   estimate: function () {
+//     this.sales = estimateSales(this);
+//   },
+// };
+
+// const lima = {
+//   location: 'Lima',
+//   minCustomers: 2,
+//   maxCustomers: 16,
+//   avgCookiesPerSale: 4.6,
+//   sales: [],
+//   estimate: function () {
+//     this.sales = estimateSales(this);
+//   },
+// };
+
+
+// // initialize sales
+// seattle.estimate();
+// tokyo.estimate();
+// dubai.estimate();
+// paris.estimate();
+// lima.estimate();
