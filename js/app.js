@@ -16,7 +16,10 @@ let CookieStand = function (location, minCustomers, maxCustomers, avgCookiesPerS
   this.avgCookiesPerSale = avgCookiesPerSale;
   this.custEachHour = [];
   this.sales = [];
+
 };
+
+
 
 CookieStand.prototype.renderData = function() {
   const dataRow = document.createElement('tr');
@@ -34,10 +37,21 @@ CookieStand.prototype.renderData = function() {
   }
   tableElem.appendChild(dataRow);
 
-  
+  let dailyTotal = 0;
+  for (let i = 0; i < this.sales.length; i++) {
+    dailyTotal += this.sales[i];
+    console.log(dailyTotal);
+  }
 
+  const finalDailyTotalCell = document.createElement('td');
+  finalDailyTotalCell.textContent = dailyTotal;
+  dataRow.appendChild(finalDailyTotalCell);
 
+  tableElem.appendChild(dataRow);
 };
+
+
+
 
 
 CookieStand.prototype.estimateSales = function () {
@@ -52,6 +66,9 @@ CookieStand.prototype.estimateSales = function () {
   // console.log(sales);
   // return sales;
 };
+
+
+
 
 function randomInRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
