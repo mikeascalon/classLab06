@@ -17,7 +17,25 @@
             <li><a href ='sales.html'>Sales</a></li>
         </ul>
     </nav>
-    <img src="../img/salmonLogo.png" alt="salmon logo">
+    
+    <form id="addLocationForm">
+        <fieldset>
+            <legend>Add a Location</legend>
+            <label for="locationName">Location Name</label>
+            <input type="text" name="locationName">
+
+            <label for="minimumCustomerPerHour">Minimum Customer Per Hour</label>
+            <input type="number" name="minimumCustomerPerHour">
+
+            <label for="maximumCustomerPerHour">Maximum Customer Per Hour</label>
+            <input type="number" name="maximumCustomerPerHour">
+
+            <label for="averageCustomerPerHour">Average Customer Per Hour</label>
+            <input type="number" name="averageCustomerPerHour">
+            <button type="submit">Click here to add!</button>
+        </fieldset>
+    </form>
+    
     <main>
         <section id="root" class="content"></section>
 

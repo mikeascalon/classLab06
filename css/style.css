@@ -82,5 +82,11 @@ td, th {
   table {
     border-collapse: collapse;
   }
+
+  form {
+    border: 2px #333;
+  }
+
+  
     
   

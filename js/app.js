@@ -1,3 +1,10 @@
+const newStore = [];
+
+
+
+
+
+
 const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
 const container = document.getElementById('root');
@@ -49,9 +56,6 @@ CookieStand.prototype.renderData = function() {
 
   tableElem.appendChild(dataRow);
 };
-
-
-
 
 
 CookieStand.prototype.estimateSales = function () {
@@ -109,8 +113,6 @@ function renderFooter() {
     totalSalesCell.textContent = calculateTotalSales(i);
     footerRow.appendChild(totalSalesCell);
   }
- 
-
 }
 
 function calculateTotalSales(hourIndex) {
@@ -123,27 +125,11 @@ function calculateTotalSales(hourIndex) {
 
 
 
-// for (let i = 0; i < stores.length; i++) {
-//   const store = stores[i];
-
-//   // Create a row for this cookie stand
-//   const dataRow = document.createElement('tr');
-//   tableElem.appendChild(dataRow);
-
-//   // Location cell
-//   const locationCell = document.createElement('td');
-//   dataRow.appendChild(locationCell);
-//   locationCell.textContent = store.location;
-// }
-
 CookieStand.prototype.render = function () {
   // need an article per cookie stand
   const heading = document.createElement('h2');
   cookieStandArticle.appendChild(heading);
   heading.textContent = this.location;
-
-  // const hoursList = document.createElement('ul');
-  // cookieStandArticle.appendChild(hoursList);
 
   let totalSold = 0;
 
@@ -164,10 +150,7 @@ CookieStand.prototype.render = function () {
 
 };
 
-// function render(cookieStand) {
-//   cookieStand.sales = cookieStand.estimateSales();
-//   cookieStand.render();
-// }
+
 
 
 const seattle = new CookieStand('Seattle', 23, 65, 6.3);
@@ -195,73 +178,59 @@ lima.renderData();
 
 renderFooter();
 
-
-// render(seattle);
-// render(tokyo);
-// render(dubai);
-// render(paris);
-// render(lima);
-
-// const seattle = {
-//   location: 'Seattle',
-//   minCustomers: 23,
-//   maxCustomers: 65,
-//   avgCookiesPerSale: 6.3,
-//   sales: [],
-//   estimate: function () {
-//     this.sales = estimateSales(this);
-//   },
-// };
+//to do  table
 
 
-// const tokyo = {
-//   location: 'Tokyo',
-//   minCustomers: 3,
-//   maxCustomers: 24,
-//   avgCookiesPerSale: 1.2,
-//   sales: [],
-//   estimate: function () {
-//     this.sales = estimateSales(this);
-//   },
-// };
+function NewStore(location, miniCustomer, maxiCustomer, averageCustomerPerHour) {
+  this.location = location;
+  this.miniCustomer = miniCustomer;
+  this.maxiCustomer = maxiCustomer;
+  this.averageCustomerPerHour = averageCustomerPerHour;
 
-// const dubai = {
-//   location: 'Dubai',
-//   minCustomers: 11,
-//   maxCustomers: 38,
-//   avgCookiesPerSale: 3.7,
-//   sales: [],
-//   estimate: function () {
-//     this.sales = estimateSales(this);
-//   },
-// };
+}
 
-// const paris = {
-//   location: 'Paris',
-//   minCustomers: 20,
-//   maxCustomers: 38,
-//   avgCookiesPerSale: 2.3,
-//   sales: [],
-//   estimate: function () {
-//     this.sales = estimateSales(this);
-//   },
-// };
+//handle submition
+const form = document.getElementById('addLocationForm');
 
-// const lima = {
-//   location: 'Lima',
-//   minCustomers: 2,
-//   maxCustomers: 16,
-//   avgCookiesPerSale: 4.6,
-//   sales: [],
-//   estimate: function () {
-//     this.sales = estimateSales(this);
-//   },
-// };
+function handleSubmit (event) {
+  event.preventDefault();
 
 
-// // initialize sales
-// seattle.estimate();
-// tokyo.estimate();
-// dubai.estimate();
-// paris.estimate();
-// lima.estimate();
+  const locationName = event.target.locationName.value;
+  const miniCustomer = event.target.minimumCustomerPerHour.value;
+  const maxiCustomer = event.target.maximumCustomerPerHour.value;
+  const avgCustomer = event.target.averageCustomerPerHour.value;
+
+  const newStore = new NewStore(locationName, miniCustomer, maxiCustomer, avgCustomer);
+  newStore.estimateSales();
+  newStore.renderData();
+
+
+  stores.push(newStore);
+
+  // Create a new row for the store's data and append it to the table
+  const dataRow = document.createElement('tr');
+
+  const locationDataCell = document.createElement('td');
+  locationDataCell.textContent = newStore.location;
+  dataRow.appendChild(locationDataCell);
+
+  for (let i = 0; i < newStore.sales.length; i++) {
+    const salesDataCell = document.createElement('td');
+    salesDataCell.textContent = newStore.sales[i];
+    dataRow.appendChild(salesDataCell);
+  }
+
+  const finalDailyTotalCell = document.createElement('td');
+  finalDailyTotalCell.textContent = newStore.sales.reduce((total, sales) => total + sales, 0);
+  dataRow.appendChild(finalDailyTotalCell);
+
+  tableElem.appendChild(dataRow);
+
+  event.target.reset();
+
+}
+
+
+
+form.addEventListener('submit', handleSubmit);
