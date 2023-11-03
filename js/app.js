@@ -1,7 +1,8 @@
-const newStore = [];
+const store = [];
 
 
-
+let dataRowParent = null;
+let table = null;
 
 
 
@@ -29,8 +30,8 @@ let CookieStand = function (location, minCustomers, maxCustomers, avgCookiesPerS
 
 
 CookieStand.prototype.renderData = function() {
+  // this.estimateSales();
   const dataRow = document.createElement('tr');
-
 
   const locationDataCell = document.createElement('td');
   locationDataCell.textContent = this.location;
@@ -66,8 +67,10 @@ CookieStand.prototype.estimateSales = function () {
     const hourSales = Math.ceil(numCustomers * this.avgCookiesPerSale);
     this.custEachHour.push(numCustomers);
     this.sales.push(hourSales);
+    console.log(hourSales);
+    console.log(this.sales);
   }
-  // console.log(sales);
+ 
   // return sales;
 };
 
@@ -80,7 +83,7 @@ function randomInRange(min, max) {
 
 function renderHeader() {
   // header
- 
+
   const headerRow = document.createElement('tr');
   tableElem.appendChild(headerRow);
 
@@ -100,20 +103,7 @@ function renderHeader() {
 
 renderHeader();
 
-function renderFooter() {
-  const footerRow = document.createElement('tr');
-  tableElem.appendChild(footerRow);
 
-  const labelCell = document.createElement('td');
-  labelCell.textContent = 'Total';
-  footerRow.appendChild(labelCell);
-
-  for (let i = 0; i < hours.length; i++) {
-    const totalSalesCell = document.createElement('td');
-    totalSalesCell.textContent = calculateTotalSales(i);
-    footerRow.appendChild(totalSalesCell);
-  }
-}
 
 function calculateTotalSales(hourIndex) {
   let total = 0;
@@ -127,6 +117,7 @@ function calculateTotalSales(hourIndex) {
 
 CookieStand.prototype.render = function () {
   // need an article per cookie stand
+
   const heading = document.createElement('h2');
   cookieStandArticle.appendChild(heading);
   heading.textContent = this.location;
@@ -176,7 +167,7 @@ paris.renderData();
 lima.estimateSales();
 lima.renderData();
 
-renderFooter();
+
 
 //to do  table
 
@@ -189,8 +180,13 @@ function NewStore(location, miniCustomer, maxiCustomer, averageCustomerPerHour) 
 
 }
 
+
 //handle submition
 const form = document.getElementById('addLocationForm');
+
+form.addEventListener('submit', handleSubmit);
+
+
 
 function handleSubmit (event) {
   event.preventDefault();
@@ -201,9 +197,10 @@ function handleSubmit (event) {
   const maxiCustomer = event.target.maximumCustomerPerHour.value;
   const avgCustomer = event.target.averageCustomerPerHour.value;
 
-  const newStore = new NewStore(locationName, miniCustomer, maxiCustomer, avgCustomer);
+  const newStore = new CookieStand (locationName, miniCustomer, maxiCustomer, avgCustomer);
+  console.log(newStore);
   newStore.estimateSales();
-  newStore.renderData();
+  // newStore.renderData();
 
 
   stores.push(newStore);
@@ -229,8 +226,40 @@ function handleSubmit (event) {
 
   event.target.reset();
 
+  renderFooter();
+
 }
 
+function renderFooter() {
+
+  const existingTfoot = tableElem.querySelector('tfoot');
+  if (existingTfoot) {
+    tableElem.removeChild(existingTfoot);
+  }
+
+  const tfoot = document.createElement('tfoot');
+  tableElem.appendChild(tfoot);
+  const footerRow = document.createElement('tr');
+
+  for (let i = 0; i <= hours.length; i++) {
+    const totalSalesCell = document.createElement('td');
+    if (i === 0) {
+      totalSalesCell.textContent = 'Total';
+    } else {
+      totalSalesCell.textContent = calculateTotalSales(i - 1);
+    }
+    footerRow.appendChild(totalSalesCell);
 
 
-form.addEventListener('submit', handleSubmit);
+
+
+  }
+
+  tfoot.appendChild(footerRow);
+
+
+  
+}
+
+renderFooter();
+
