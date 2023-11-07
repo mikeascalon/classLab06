@@ -29,7 +29,7 @@ let CookieStand = function (location, minCustomers, maxCustomers, avgCookiesPerS
 
 
 
-CookieStand.prototype.renderData = function() {
+CookieStand.prototype.renderData = function () {
   // this.estimateSales();
   const dataRow = document.createElement('tr');
 
@@ -70,7 +70,7 @@ CookieStand.prototype.estimateSales = function () {
     console.log(hourSales);
     console.log(this.sales);
   }
- 
+
   // return sales;
 };
 
@@ -88,7 +88,7 @@ function renderHeader() {
   tableElem.appendChild(headerRow);
 
   let label = document.createElement('th');
-  label.textContent='location';
+  label.textContent = 'location';
   headerRow.appendChild(label);
 
   for (let i = 0; i < hours.length; i++) {
@@ -98,7 +98,7 @@ function renderHeader() {
   }
   const dailytotalheader = document.createElement('th');
   headerRow.appendChild(dailytotalheader);
-  dailytotalheader.textContent='Daily Location Total';
+  dailytotalheader.textContent = 'Daily Location Total';
 }
 
 renderHeader();
@@ -115,31 +115,31 @@ function calculateTotalSales(hourIndex) {
 
 
 
-CookieStand.prototype.render = function () {
-  // need an article per cookie stand
+// CookieStand.prototype.render = function () {
+//   // need an article per cookie stand
 
-  const heading = document.createElement('h2');
-  cookieStandArticle.appendChild(heading);
-  heading.textContent = this.location;
+//   const heading = document.createElement('h2');
+//   cookieStandArticle.appendChild(heading);
+//   heading.textContent = this.location;
 
-  let totalSold = 0;
+//   let totalSold = 0;
 
-  for (let i = 0; i < this.sales.length; i++) {
-    const salesItem = document.createElement('li');
-    hoursList.appendChild(salesItem);
-    const cookiesSoldThisHour = this.sales[i];
-    totalSold += cookiesSoldThisHour;
-    const salesInfo = `${hours[i]}: ${cookiesSoldThisHour} cookies`;
-    salesItem.textContent = salesInfo;
-  }
-  // add total line
-  const totalItem = document.createElement('li');
-  hoursList.appendChild(totalItem);
-  const totalInfo = `Total: ${totalSold} cookies sold`;
-  totalItem.textContent = totalInfo;
+//   for (let i = 0; i < this.sales.length; i++) {
+//     const salesItem = document.createElement('li');
+//     hoursList.appendChild(salesItem);
+//     const cookiesSoldThisHour = this.sales[i];
+//     totalSold += cookiesSoldThisHour;
+//     const salesInfo = `${hours[i]}: ${cookiesSoldThisHour} cookies`;
+//     salesItem.textContent = salesInfo;
+//   }
+//   // add total line
+//   const totalItem = document.createElement('li');
+//   hoursList.appendChild(totalItem);
+//   const totalInfo = `Total: ${totalSold} cookies sold`;
+//   totalItem.textContent = totalInfo;
 
 
-};
+// };
 
 
 
@@ -172,13 +172,13 @@ lima.renderData();
 //to do  table
 
 
-function NewStore(location, miniCustomer, maxiCustomer, averageCustomerPerHour) {
-  this.location = location;
-  this.miniCustomer = miniCustomer;
-  this.maxiCustomer = maxiCustomer;
-  this.averageCustomerPerHour = averageCustomerPerHour;
+// function NewStore(location, miniCustomer, maxiCustomer, averageCustomerPerHour) {
+//   this.location = location;
+//   this.miniCustomer = miniCustomer;
+//   this.maxiCustomer = maxiCustomer;
+//   this.averageCustomerPerHour = averageCustomerPerHour;
 
-}
+// }
 
 
 //handle submition
@@ -188,16 +188,16 @@ form.addEventListener('submit', handleSubmit);
 
 
 
-function handleSubmit (event) {
+function handleSubmit(event) {
   event.preventDefault();
 
 
   const locationName = event.target.locationName.value;
-  const miniCustomer = event.target.minimumCustomerPerHour.value;
-  const maxiCustomer = event.target.maximumCustomerPerHour.value;
-  const avgCustomer = event.target.averageCustomerPerHour.value;
+  const miniCustomer = parseInt(event.target.minimumCustomerPerHour.value);
+  const maxiCustomer = parseInt(event.target.maximumCustomerPerHour.value);
+  const avgCustomer = parseFloat(event.target.averageCustomerPerHour.value);
 
-  const newStore = new CookieStand (locationName, miniCustomer, maxiCustomer, avgCustomer);
+  const newStore = new CookieStand(locationName, miniCustomer, maxiCustomer, avgCustomer);
   console.log(newStore);
   newStore.estimateSales();
   // newStore.renderData();
@@ -236,6 +236,7 @@ function renderFooter() {
   if (existingTfoot) {
     tableElem.removeChild(existingTfoot);
   }
+  let totalTotals = 0;
 
   const tfoot = document.createElement('tfoot');
   tableElem.appendChild(tfoot);
@@ -246,19 +247,22 @@ function renderFooter() {
     if (i === 0) {
       totalSalesCell.textContent = 'Total';
     } else {
-      totalSalesCell.textContent = calculateTotalSales(i - 1);
+      let total = calculateTotalSales(i - 1);
+      totalSalesCell.textContent = total;
+      totalTotals += total;
+
     }
     footerRow.appendChild(totalSalesCell);
 
 
-
-
   }
-
+  let datacell = document.createElement('td');
+  datacell.textContent = totalTotals;
+  footerRow.appendChild(datacell);
   tfoot.appendChild(footerRow);
 
 
-  
+
 }
 
 renderFooter();
