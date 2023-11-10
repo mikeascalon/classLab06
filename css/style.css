@@ -2,9 +2,8 @@
 header{
     background-color: black;
     font-size: 50px;
-    margin: 20px;
-    padding: 5px;
-    color: aliceblue;
+    padding: 30px;
+    color: rgb(251, 141, 133);
     text-align: center;
 }
 nav{
@@ -13,12 +12,12 @@ nav{
 
 nav ul {
     list-style: none; /* Remove list bullets */
-    padding: 5px; /* Remove default padding */
-    margin: 10px; /* Remove default margin */
-    font-size: 20px;
+    padding: 20px; /* Remove default padding */
+    font-size: 15px;
 }
 
 nav li {
+
     display: inline; /* Display list items horizontally */
     margin-right: 15px; /* Add spacing between list items */
 }
@@ -26,6 +25,8 @@ nav li {
 nav a {
     text-decoration: none; /* Remove underlines from links */
     color: #fff; /* Text color for links */
+    color: rgb(1, 1, 136);
+    text-decoration: underline;
 }
 
 /* Style for hover or active links */
@@ -38,9 +39,12 @@ img {
     display: block; /* Makes the image a block element, so it's below the navigation */
     margin: 0 auto; /* Centers the image horizontally */
     max-width: 100%; /* Keeps the image within its container */
-    border-top: 2px solid #000; 
-    border-bottom: 2px solid #000;
+    margin-bottom: 90px;
+   
+    
 }
+
+
 
 .mainPage ul {
     list-style: none; /* Bullet style (e.g., disc, circle, square) */
@@ -49,16 +53,14 @@ img {
 }
 
 .mainPage li {
-    margin: 30px; /* Remove default margin */
+    margin: px; /* Remove default margin */
     padding: 5px 0; /* Add vertical spacing between list items */
     font-size: 30px;
+    
 }
 
-/* Styling links within list items */
-.mainPage li a {
-    text-decoration: none; /* Remove underlines from links */
-    color: #333; /* Text color for links */
-}
+
+
 
 #root {
     display: flex;
@@ -71,25 +73,96 @@ img {
     justify-content: center;
 }
 
-td {
-    padding: 10px;
-}
 
 td, th {
     border: 1px solid black;
-  }
+}
 
-  table {
+th{
+    background-color: grey;
+    padding: 10px;
+    font-weight: bold;
+    margin: auto;
+    color: beige;
+}
+
+td{
+    padding: 10px;
+    background-color: rgb(251, 141, 133);
+}
+
+.finalDailytotal {
+    background-color: grey;
+    color: beige;
+}
+
+.locationData {
+
+    background-color: grey;
+    color: beige;
+}
+
+.totalLabel {
+    color: beige;
+    background-color: grey;
+}
+
+.totalPerHour {
+    color: beige;
+    background-color: grey;
+
+}
+
+.totalOfTotal {
+    color: beige;
+    background-color: grey;
+
+}
+
+
+
+table {
     border-collapse: collapse;
-  }
+    margin: 10px;
+}
 
-  form {
-    border: 2px #333;
-  }
+form {
+    border: 2px #333 solid;
+    margin: 20px;
+    padding: 10px;
+}
 
-  h1{
+h1{
     font-family: 'Righteous', sans-serif;
 
-  }
+}
     
-  
+/* Main page*/
+
+div {
+
+    margin-left: 10%;
+    margin-top: 20px;
+    border-top: 10px black;
+
+}
+
+.MPdetails li {
+    /* Your styling goes here */
+    font-family: Georgia,  Times, serif;
+   
+    color: #8c8c8c; /* Text color */
+    font-size: 15px; /* Font size */
+    
+}    
+
+.mainPage {
+
+   font-size: 40px;
+   font-weight: bold;
+}
+
+main {
+    border-top: 2px black;
+}
+

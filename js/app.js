@@ -1,10 +1,8 @@
+
+
 const store = [];
-
-
 let dataRowParent = null;
 let table = null;
-
-
 
 const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
@@ -28,13 +26,13 @@ let CookieStand = function (location, minCustomers, maxCustomers, avgCookiesPerS
 };
 
 
-
 CookieStand.prototype.renderData = function () {
   // this.estimateSales();
   const dataRow = document.createElement('tr');
 
   const locationDataCell = document.createElement('td');
   locationDataCell.textContent = this.location;
+  locationDataCell.classList.add('locationData');
   dataRow.appendChild(locationDataCell);
 
 
@@ -53,7 +51,10 @@ CookieStand.prototype.renderData = function () {
 
   const finalDailyTotalCell = document.createElement('td');
   finalDailyTotalCell.textContent = dailyTotal;
+  finalDailyTotalCell.classList.add('finalDailytotal');
   dataRow.appendChild(finalDailyTotalCell);
+
+ 
 
   tableElem.appendChild(dataRow);
 };
@@ -88,7 +89,7 @@ function renderHeader() {
   tableElem.appendChild(headerRow);
 
   let label = document.createElement('th');
-  label.textContent = 'location';
+  label.textContent = 'Location';
   headerRow.appendChild(label);
 
   for (let i = 0; i < hours.length; i++) {
@@ -210,6 +211,7 @@ function handleSubmit(event) {
 
   const locationDataCell = document.createElement('td');
   locationDataCell.textContent = newStore.location;
+  locationDataCell.classList.add('totalLabel');
   dataRow.appendChild(locationDataCell);
 
   for (let i = 0; i < newStore.sales.length; i++) {
@@ -220,6 +222,7 @@ function handleSubmit(event) {
 
   const finalDailyTotalCell = document.createElement('td');
   finalDailyTotalCell.textContent = newStore.sales.reduce((total, sales) => total + sales, 0);
+  finalDailyTotalCell.classList.add('totalPerHour');
   dataRow.appendChild(finalDailyTotalCell);
 
   tableElem.appendChild(dataRow);
@@ -246,9 +249,11 @@ function renderFooter() {
     const totalSalesCell = document.createElement('td');
     if (i === 0) {
       totalSalesCell.textContent = 'Total';
+      totalSalesCell.classList.add('totalLabel');
     } else {
       let total = calculateTotalSales(i - 1);
       totalSalesCell.textContent = total;
+      totalSalesCell.classList.add('totalPerHour');
       totalTotals += total;
 
     }
@@ -258,6 +263,7 @@ function renderFooter() {
   }
   let datacell = document.createElement('td');
   datacell.textContent = totalTotals;
+  datacell.classList.add('totalOfTotal');
   footerRow.appendChild(datacell);
   tfoot.appendChild(footerRow);
 
