@@ -13,4 +13,3 @@ Code fellows 201 class
 ## Lighthouse Accessibility Report Score
 
 ![Accessibility Score](/img/accessibility%20salmon%20cookies.png)
-
